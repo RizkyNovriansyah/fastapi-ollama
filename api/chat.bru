@@ -1,0 +1,28 @@
+meta {
+  name: /chat
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8000/chat
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyIiwiZXhwIjoxNzY1NTA5OTI4fQ.F_nLvAm1mMJQBYl1vKoJHr492hlAL8afjwIug8dcwO4
+}
+
+body:json {
+  {"message":"r"}
+}
+
+body:multipart-form {
+  message: r
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
