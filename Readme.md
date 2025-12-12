@@ -3,14 +3,16 @@
 
 ## Instalation
 
-1. docker compose build --no-cache
+1. build \
+   docker compose build --no-cache
 
-2. docker compose up
+3. run \
+   docker compose up
 
-3. hit with bruno  \n
+5. hit with bruno  \
     curl --request GET --url http://0.0.0.0:8000/
 
-4. hit check model available \n
+6. hit check model available \
     curl --request GET --url http://0.0.0.0:8000/check
     wait until "ollama_response" "models" available
 
