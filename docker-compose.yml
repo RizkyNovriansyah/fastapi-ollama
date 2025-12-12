@@ -1,0 +1,23 @@
+services:
+  ollama:
+    build:
+      context: ./ollama
+      network: host
+    container_name: ollama-full
+    network_mode: host
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    command: ["ollama", "serve"]
+
+  fastapi:
+    build:
+      context: ./backend
+      network: host
+    container_name: fastapi-app
+    network_mode: host
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+
+volumes:
+  ollama_data:
