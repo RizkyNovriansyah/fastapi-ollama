@@ -15,8 +15,10 @@ RUN curl -L https://github.com/ollama/ollama/releases/download/v0.13.3/ollama-li
     chmod +x /usr/local/bin/ollama && \
     rm -rf /tmp/*
 
-# Expose port
+# Copy entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 11434
 
-# Start Ollama server
-CMD ["ollama", "serve"]
+ENTRYPOINT ["/entrypoint.sh"]

@@ -17,14 +17,9 @@ docker run --name ollama-full -p 11434:11434 -v ollama_data:/root/.ollama ollama
 docker run --name ollama-full -p 11434:11434 -v ollama_data:/root/.ollama -e OLLAMA_HOST=0.0.0.0:11434 ollama-full
 
 # use
-docker run \
-  --name ollama-full \
-  --network=mynet \
-  -p 11434:11434 \
-  -v ollama_data:/root/.ollama \
-  -e OLLAMA_HOST=0.0.0.0:11434 \
-  ollama-full
-
+docker build -t ollama-full ./ollama --network=host
+dockerrm ollama-full
+docker run --name ollama-full --network=host -p 11434:11434 -v ollama_data:/root/.ollama -e OLLAMA_HOST=0.0.0.0:11434 ollama-full
 ### BACKEND
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
@@ -34,12 +29,9 @@ docker build -t fastapi-app ./backend --network=host --no-cache
 docker run -p 8000:8000 fastapi-app
 
 # use
-docker run \
-  --name fastapi-app \
-  --network=mynet \
-  -p 8000:8000 \
-  fastapi-app
-
+docker build -t fastapi-app ./backend --network=host --no-cache
+docker rm fastapi-app
+docker run --name fastapi-app --network=host   -p 8000:8000   fastapi-app
 
 # DOCKER
 docker compose down -v
