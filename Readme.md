@@ -18,8 +18,9 @@ docker run --name ollama-full -p 11434:11434 -v ollama_data:/root/.ollama -e OLL
 
 # use
 docker build -t ollama-full ./ollama --network=host
-dockerrm ollama-full
+docker rm ollama-full
 docker run --name ollama-full --network=host -p 11434:11434 -v ollama_data:/root/.ollama -e OLLAMA_HOST=0.0.0.0:11434 ollama-full
+
 ### BACKEND
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
@@ -38,3 +39,7 @@ docker compose down -v
 docker compose up --build --no-cache
 
 docker network create mynet
+
+# use
+docker compose build --no-cache
+docker compose up -d
