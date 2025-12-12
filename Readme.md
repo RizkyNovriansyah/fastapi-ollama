@@ -7,10 +7,10 @@
 
 2. docker compose up
 
-3. hit with bruno 
+3. hit with bruno  \n
     curl --request GET --url http://0.0.0.0:8000/
 
-4. hit check model available
+4. hit check model available \n
     curl --request GET --url http://0.0.0.0:8000/check
     wait until "ollama_response" "models" available
 
